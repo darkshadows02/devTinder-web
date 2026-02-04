@@ -6,15 +6,17 @@ import { addFeed } from '../utils/feedSlice'
 import UserCard from './UserCard'
 
 const Feed = () => {
+  const feed=useSelector((store)=> store.feed)
       
    const dispatch=useDispatch();
    const getFeed=async()=>{
+      if(feed) return ;
       try{
-        if(feed) return ;
       const res=await axios.get(BASE_URL+"/feed", {
         withCredentials:true
       });
-      dispatch(addFeed(res?.data?.data)); 
+      console.log(res?.data)
+      dispatch(addFeed(res?.data)); 
       }catch(err){
          console.log(err);
       }
@@ -22,8 +24,8 @@ const Feed = () => {
    useEffect(()=>{
     getFeed();
    }, []);
-   const feed=useSelector((store)=> store.feed)
-  return ( feed &&   (
+    console.log(feed)
+  return ( feed?.length > 0 &&   (
     <div className='flex justify-center my-10'> 
       <UserCard user={feed[0]} />
     </div>
