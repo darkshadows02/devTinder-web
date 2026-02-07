@@ -9,8 +9,7 @@ export const NavBar = () => {
       const user=useSelector((store)=> store.user)
       const dispatch=useDispatch();
       const navigate=useNavigate();
-      // console.log(user);
-      const handleLogout=async()=>{
+       const handleLogout=async()=>{
            try{
                await axios.post(
                 BASE_URL+"/logout",
@@ -49,7 +48,9 @@ export const NavBar = () => {
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><a>Settings</a></li>
+        <li>
+          <Link to="/connections">Connections</Link>
+        </li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>

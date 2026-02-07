@@ -27,8 +27,7 @@ const EditProfile = ({user}) => {
           }, 3000)
            
     }catch(err){
-        console.log(err.response)
-         seterror(err.response);
+          seterror(err.response);
        }
    }
   return (

@@ -20,8 +20,7 @@ const Login = () => {
         emailId,
         password,
       },{withCredentials:true});
-      console.log(res.data)
-      dispatch(addUser(res.data));
+       dispatch(addUser(res.data));
      return usenavigate("/")
     } catch (err) {
       seterror(err?.response?.data || "Something went wrong")
