@@ -23,7 +23,7 @@ const Feed = () => {
    useEffect(()=>{
     getFeed();
    }, []);
-    console.log(feed)
+    
   return ( feed?.length > 0 &&   (
     <div className='flex justify-center my-10'> 
       <UserCard user={feed[0]} />
