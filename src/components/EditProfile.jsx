@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { use, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../utils/constants';
+ import { BASE_URL } from '../utils/constants';
 import UserCard from './UserCard';
 
 const EditProfile = ({user}) => {
@@ -20,14 +19,17 @@ const EditProfile = ({user}) => {
         seterror("")
        try{
         const res=await axios.patch(BASE_URL+"/profile/edit", {firstName, lastName, photoUrl, age, gender, about}, {withCredentials:true})
-          dispatch(addUser(res?.data))
+        console.log(res?.data)
+        dispatch(addUser(res?.data))
           setshowToast(true)
+              
           setTimeout(()=>{
             setshowToast(false)
           }, 3000)
            
     }catch(err){
-          seterror(err.response);
+      // console.log(err.response);
+          seterror(err.response?.data);
        }
    }
   return (
@@ -40,7 +42,7 @@ const EditProfile = ({user}) => {
              Edit Profile
           </h2>
 
-          {/* Email */}
+          {/* firstname */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">First Name</span>
@@ -123,10 +125,7 @@ const EditProfile = ({user}) => {
             </button>
           </div>
 
-          {/* Extra text */}
-          <p className="text-center text-sm mt-4 text-gray-500 ">
-            Don’t have an account? <span className="link link-primary">Sign up</span>
-          </p>
+           
         </div>
       </div>
     </div>

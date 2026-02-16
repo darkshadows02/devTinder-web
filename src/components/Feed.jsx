@@ -20,7 +20,7 @@ const Feed = () => {
       }catch(err){
          console.log(err);
       }
-   } 
+   }
    useEffect(()=>{
     getFeed();
    }, []);
